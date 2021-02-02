@@ -87,7 +87,7 @@ currenciesUnique.forEach(function (value, _, map) {
 });
 
 /////////////////////////////////////////////////
-// The Map Method
+// The map Method
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const eurToUsd = 1.1;
@@ -114,7 +114,7 @@ const movementDescriptions = movements.map(
 console.log(movementDescriptions);
 
 /////////////////////////////////////////////////
-// The Filter Method
+// The filter Method
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -132,7 +132,7 @@ const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
 
 /////////////////////////////////////////////////
-// The Reduce Method
+// The reduce Method
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -174,7 +174,7 @@ const totalDepositsUSD = movements
 console.log(totalDepositsUSD);
 
 /////////////////////////////////////////////////
-// The Find Method
+// The find Method
 
 const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(movements);
@@ -183,4 +183,49 @@ console.log(firstWithdrawal);
 console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
+
+/////////////////////////////////////////////////
+// some & every
+
+console.log(movements);
+
+// EQUALITY
+console.log(movements.includes(-130));
+
+// SOME: CONDITION
+console.log(movements.some(mov => mov === -130));
+
+const anyDeposits = movements.some(mov => mov > 1500);
+console.log(anyDeposits);
+
+// EVERY
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+// Separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
 */
+/////////////////////////////////////////////////
+// flat & flatMap
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+// flat
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+// flatMap
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
